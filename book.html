@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Free Call | LaunchAI</title>
+<meta name="description" content="Book your free AI strategy call with LaunchAI. We'll build a custom growth plan for your real estate or small business — no pressure, no BS.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://launchaix.com/book">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://launchaix.com/book">
+<meta property="og:title" content="Book a Free Call | LaunchAI">
+<meta property="og:description" content="Book your free AI strategy call with LaunchAI. Get a custom plan specific to your business with real numbers.">
+<meta property="og:image" content="https://launchaix.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Book a Free Call | LaunchAI">
+<meta name="twitter:description" content="Book your free AI strategy call with LaunchAI.">
+<meta name="twitter:image" content="https://launchaix.com/og-image.png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23ec4899'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='Arial Black' font-size='20' font-weight='900' fill='white'>L</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#06060a;--ink2:#0d0d14;--surface:#11111a;--card:#181824;--card2:#1e1e2e;
+  --line:rgba(255,255,255,.07);--line2:rgba(255,255,255,.13);
+  --off:#f0f0f8;--muted:#8888a8;--dim:#44445a;
+  --pink:#ec4899;--ps:#f9a8d4;--purple:#7c3aed;--blue:#3b82f6;--bs:#93c5fd;
+  --grad:linear-gradient(135deg,#ec4899,#7c3aed,#3b82f6);
+  --grad2:linear-gradient(135deg,#ec4899,#7c3aed);
+  --grad3:linear-gradient(135deg,#7c3aed,#3b82f6);
+  --head:'Bricolage Grotesque',sans-serif;--body:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--ink);color:var(--off);font-family:var(--body);overflow-x:hidden;-webkit-font-smoothing:antialiased;line-height:1.6}
+a{text-decoration:none;color:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:2px}
+/* Nav */
+.nav{position:sticky;top:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:58px;background:rgba(6,6,10,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--line)}
+.nav-logo{display:flex;align-items:center;cursor:pointer;text-decoration:none;flex-shrink:0}
+.logo-svg{height:34px;width:auto;display:block}
+.nav-links{display:flex;gap:1.8rem;list-style:none}
+.nav-links a{font-size:.76rem;color:var(--muted);transition:.2s}.nav-links a:hover{color:#fff}
+.nav-btns{display:flex;gap:.6rem}
+.btn-ghost-sm{font-size:.74rem;color:var(--muted);padding:.4rem .85rem;border-radius:50px;border:1px solid var(--line2);transition:.2s;cursor:pointer;font-family:var(--body);background:transparent;text-decoration:none}
+.btn-ghost-sm:hover{color:#fff;border-color:rgba(255,255,255,.25)}
+.btn-pink-sm{font-size:.74rem;font-weight:700;color:#fff;background:var(--grad2);padding:.44rem 1.1rem;border-radius:50px;transition:.2s;font-family:var(--body);border:none;box-shadow:0 0 18px rgba(236,72,153,.22);text-decoration:none;display:inline-block}
+.btn-pink-sm:hover{opacity:.88}
+@media(max-width:600px){.nav-links,.btn-ghost-sm{display:none}}
+/* Book layout */
+.book-wrap{min-height:calc(100vh - 58px);display:grid;grid-template-columns:1fr 1fr}
+.book-left{padding:4.5rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--line);background:var(--ink2);position:relative;overflow:hidden}
+.book-left-glow{position:absolute;top:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(236,72,153,.08),transparent 65%);pointer-events:none}
+.bbadge{display:inline-flex;align-items:center;gap:.45rem;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.25);color:var(--ps);font-size:.67rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:.32rem .88rem;border-radius:50px;margin-bottom:1.7rem;font-family:var(--body)}
+.bpulse{width:5px;height:5px;border-radius:50%;background:var(--ps);animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
+.bh1{font-family:var(--head);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.04em;line-height:1.06;color:#fff;margin-bottom:1rem}
+.bh1-g{background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.bsub{font-size:.86rem;color:var(--muted);font-weight:300;line-height:1.65;max-width:360px;margin-bottom:2.2rem}
+.perks{display:flex;flex-direction:column;gap:.8rem;margin-bottom:2.2rem}
+.perk{display:flex;align-items:flex-start;gap:.82rem}
+.pchk{width:19px;height:19px;border-radius:6px;background:rgba(236,72,153,.15);border:1px solid rgba(236,72,153,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.pchk svg{width:9px;height:9px;fill:none;stroke:var(--ps);stroke-width:2.5;stroke-linecap:round}
+.ptxt{font-size:.8rem;color:var(--muted);line-height:1.5}.ptxt strong{color:#fff;font-weight:500}
+.pstrip{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:12px;padding:.9rem 1.2rem;display:flex;align-items:center;gap:.85rem}
+.psavs{display:flex}
+.psav{width:24px;height:24px;border-radius:50%;border:2px solid var(--ink2);background:var(--grad2);font-size:.5rem;font-weight:700;color:#fff;display:flex;align-items:center;justify-content:center;margin-left:-5px}
+.psav:first-child{margin-left:0}
+.pst{color:#f59e0b;font-size:.77rem}
+.pstxt{font-size:.74rem;color:var(--muted)}.pstxt strong{color:#fff}
+/* Right / Form */
+.book-right{padding:3.5rem 3rem;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--ink)}
+.fc{background:var(--card);border:1px solid rgba(236,72,153,.18);border-radius:22px;padding:2rem;position:relative;overflow:hidden;width:100%;max-width:480px}
+.fc-tl{position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad2)}
+.fc-title{font-family:var(--head);font-size:1.15rem;font-weight:800;color:#fff;letter-spacing:-.025em;margin-bottom:.3rem}
+.fc-sub{font-size:.76rem;color:var(--muted);margin-bottom:1.6rem;font-weight:300}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.82rem}
+.field{display:flex;flex-direction:column;gap:.32rem;margin-bottom:.8rem}
+.field label{font-size:.6rem;font-weight:600;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;font-family:var(--body)}
+.field input,.field select,.field textarea{background:rgba(255,255,255,.04);border:1px solid var(--line2);border-radius:10px;padding:.68rem .92rem;color:#fff;font-family:var(--body);font-size:.82rem;outline:none;transition:.25s;width:100%;-webkit-appearance:none;appearance:none}
+.field input::placeholder,.field textarea::placeholder{color:var(--dim)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(236,72,153,.5);box-shadow:0 0 0 3px rgba(236,72,153,.08)}
+.field select option{background:var(--card)}.field textarea{min-height:82px;resize:vertical}
+.bopts{display:grid;grid-template-columns:1fr 1fr;gap:.48rem}
+.bopt{position:relative}.bopt input[type=radio]{position:absolute;opacity:0;width:0;height:0}
+.bopt label{display:block;padding:.5rem .78rem;border-radius:9px;border:1px solid var(--line2);font-size:.7rem;color:var(--muted);cursor:pointer;transition:.2s;text-align:center;background:rgba(255,255,255,.02);font-family:var(--body)}
+.bopt input:checked+label{border-color:rgba(236,72,153,.5);background:rgba(236,72,153,.1);color:var(--ps)}
+.bopt label:hover{border-color:rgba(255,255,255,.2);color:#fff}
+.blbl{font-size:.6rem;font-weight:600;color:var(--dim);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:.4rem;font-family:var(--body)}
+.sbtn{width:100%;background:var(--grad2);color:#fff;font-family:var(--body);font-size:.88rem;font-weight:700;padding:.92rem;border-radius:50px;border:none;cursor:pointer;transition:.25s;margin-top:.85rem;display:flex;align-items:center;justify-content:center;gap:.45rem}
+.sbtn:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 10px 32px rgba(236,72,153,.35)}
+.sbtn:disabled{opacity:.6;transform:none;cursor:not-allowed}
+.fnote{font-size:.66rem;color:var(--dim);text-align:center;margin-top:.72rem;font-family:var(--body)}
+.succ{display:none;text-align:center;padding:2.5rem 1rem}
+.succ-icon{width:52px;height:52px;border-radius:50%;background:rgba(236,72,153,.15);border:1px solid rgba(236,72,153,.3);margin:0 auto 1.2rem;display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+.succ h3{font-family:var(--head);font-size:1.25rem;font-weight:800;color:#fff;margin-bottom:.5rem}
+.succ p{font-size:.8rem;color:var(--muted);line-height:1.6}
+/* Footer */
+footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5rem 2rem}
+.ft-g{max-width:1060px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+.ft-desc{font-size:.75rem;color:var(--muted);line-height:1.6;max-width:220px;margin-top:.7rem;margin-bottom:1.3rem}
+.ft-col h5{font-size:.58rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);margin-bottom:.9rem}
+.ft-col a{display:block;font-size:.75rem;color:var(--muted);margin-bottom:.5rem;transition:.2s}
+.ft-col a:hover{color:#fff}
+.si-r{display:flex;gap:.5rem}
+.si{width:30px;height:30px;border-radius:8px;border:1px solid var(--line2);background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center;transition:.25s;text-decoration:none;color:var(--muted)}
+.si:hover{background:rgba(236,72,153,.15);border-color:rgba(236,72,153,.35);transform:translateY(-2px)}
+.si svg{width:12px;height:12px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.ft-hr{height:1px;background:var(--line);margin-bottom:1.2rem}
+.ft-bot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;font-size:.7rem;color:var(--dim)}
+.ft-bot a{color:var(--dim);transition:.2s}.ft-bot a:hover{color:var(--muted)}
+.tpv{color:#00b67a}
+@media(max-width:900px){.book-wrap{grid-template-columns:1fr}.book-left{border-right:none;border-bottom:1px solid var(--line);padding:3rem 1.5rem}.book-right{padding:3rem 1.5rem}}
+@media(max-width:600px){.frow{grid-template-columns:1fr}.ft-g{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a class="nav-logo" href="/" aria-label="LaunchAI">
+    <svg class="logo-svg" viewBox="0 0 300 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="2" y="56" font-family="'Bricolage Grotesque','Arial Black',Arial,sans-serif" font-size="60" font-weight="800" fill="#f0f0f0" letter-spacing="-2">LaunchAI</text>
+      <g transform="translate(84,4)">
+        <path d="M11 0 Q12 9.4 22 11 Q12 12.6 11 22 Q10 12.6 0 11 Q10 9.4 11 0Z" fill="#ec4899"/>
+      </g>
+    </svg>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#realestate">Real Estate</a></li>
+    <li><a href="/#smallbiz">Small Business</a></li>
+    <li><a href="/#reviews">Reviews</a></li>
+  </ul>
+  <div class="nav-btns">
+    <a class="btn-ghost-sm" href="/#reviews">See Results</a>
+    <a class="btn-pink-sm" href="/book">Book a Call</a>
+  </div>
+</nav>
+
+<div class="book-wrap">
+  <div class="book-left">
+    <div class="book-left-glow"></div>
+    <div style="position:relative;z-index:1">
+      <div style="margin-bottom:1.4rem">
+        <svg viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:24px;width:auto;opacity:.75;display:block">
+          <text x="2" y="40" font-family="'Bricolage Grotesque','Arial Black',Arial,sans-serif" font-size="42" font-weight="800" fill="#f0f0f0" letter-spacing="-1">LaunchAI</text>
+          <g transform="translate(57,3)"><path d="M7 0 Q7.7 6 14 7 Q7.7 8 7 14 Q6.3 8 0 7 Q6.3 6 7 0Z" fill="#ec4899"/></g>
+        </svg>
+      </div>
+      <div class="bbadge"><span class="bpulse"></span>Free · No commitment</div>
+      <h1 class="bh1">Let's Build Your<br><span class="bh1-g">AI System.</span></h1>
+      <p class="bsub">Tell us about your business and we'll show you exactly what's possible — specific to you, with real numbers.</p>
+      <div class="perks">
+        <div class="perk"><div class="pchk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><span class="ptxt"><strong>Custom AI roadmap</strong> built for your specific business and goals</span></div>
+        <div class="perk"><div class="pchk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><span class="ptxt"><strong>Revenue projection</strong> — we estimate exactly what you stand to gain</span></div>
+        <div class="perk"><div class="pchk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><span class="ptxt"><strong>Zero sales pressure</strong> — a real strategy session, not a pitch</span></div>
+        <div class="perk"><div class="pchk"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></div><span class="ptxt"><strong>30 minutes</strong> — enough to give you a plan you can act on today</span></div>
+      </div>
+      <div class="pstrip">
+        <div class="psavs"><div class="psav">MR</div><div class="psav">SL</div><div class="psav">JT</div><div class="psav">+</div></div>
+        <div><div class="pst">★★★★★</div><div class="pstxt">Trusted by <strong>500+</strong> businesses · 5.0 on Trustpilot</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="book-right">
+    <div class="fc">
+      <div class="fc-tl"></div>
+      <h2 class="fc-title">Book Your Free Call</h2>
+      <p class="fc-sub">2 minutes to fill out. We confirm within 24 hours.</p>
+      <form id="bForm" onsubmit="handleSub(event)" novalidate>
+        <div class="frow">
+          <div class="field"><label for="firstName">First Name *</label><input id="firstName" name="firstName" type="text" placeholder="John" required autocomplete="given-name"></div>
+          <div class="field"><label for="lastName">Last Name *</label><input id="lastName" name="lastName" type="text" placeholder="Smith" required autocomplete="family-name"></div>
+        </div>
+        <div class="field"><label for="email">Email Address *</label><input id="email" name="email" type="email" placeholder="john@yourbusiness.com" required autocomplete="email"></div>
+        <div class="field"><label for="phone">Phone Number *</label><input id="phone" name="phone" type="tel" placeholder="+1 (555) 000-0000" required autocomplete="tel"></div>
+        <div class="field"><label for="category">I am a... *</label><select id="category" name="category" required><option value="" disabled selected>Choose your category</option><option>Real Estate Agent / Realtor</option><option>Small Business Owner</option><option>E-Commerce Brand</option><option>Service Business</option><option>Other</option></select></div>
+        <div class="field"><label for="service">What do you need most? *</label><select id="service" name="service" required><option value="" disabled selected>Choose the best fit</option><option>AI Caller System</option><option>Social Media Management & Ads</option><option>Real Estate Lead Generation</option><option>Automated Marketing</option><option>Website / App Development</option><option>CRM Setup</option><option>Full Growth Package</option><option>Not sure — recommend me</option></select></div>
+        <div class="field"><label for="goals">Tell us about your goals</label><textarea id="goals" name="goals" rows="3" placeholder="e.g. I'm a realtor getting 10 leads/month but only closing 1..."></textarea></div>
+        <div class="field">
+          <span class="blbl">Monthly Marketing Budget</span>
+          <div class="bopts">
+            <div class="bopt"><input type="radio" name="budget" id="b1" value="under-1k"><label for="b1">Under $1k</label></div>
+            <div class="bopt"><input type="radio" name="budget" id="b2" value="1k-3k"><label for="b2">$1k – $3k</label></div>
+            <div class="bopt"><input type="radio" name="budget" id="b3" value="3k-10k"><label for="b3">$3k – $10k</label></div>
+            <div class="bopt"><input type="radio" name="budget" id="b4" value="10k+"><label for="b4">$10k+</label></div>
+          </div>
+        </div>
+        <button type="submit" class="sbtn" id="sbtn">Schedule My Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <p class="fnote">⚡ Only 3 new client spots available this month</p>
+      </form>
+      <div class="succ" id="succDiv">
+        <div class="succ-icon">✓</div>
+        <h3>You're booked in!</h3>
+        <p>We'll reach out within 24 hours to confirm your call. Check your inbox for a confirmation email.</p>
+        <a href="https://www.trustpilot.com/review/launchaix.com" target="_blank" rel="noopener noreferrer" style="display:inline-block;margin-top:1rem;font-size:.76rem;color:#f9a8d4">★ Read what clients say on Trustpilot</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-g">
+    <div>
+      <a href="/" style="display:inline-block;margin-bottom:.65rem">
+        <svg viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:22px;width:auto;opacity:.72;display:block">
+          <text x="2" y="40" font-family="'Bricolage Grotesque','Arial Black',Arial,sans-serif" font-size="42" font-weight="800" fill="#f0f0f0" letter-spacing="-1">LaunchAI</text>
+          <g transform="translate(57,3)"><path d="M7 0 Q7.7 6 14 7 Q7.7 8 7 14 Q6.3 8 0 7 Q6.3 6 7 0Z" fill="#ec4899"/></g>
+        </svg>
+      </a>
+      <p class="ft-desc">We help real estate agents and small businesses use AI to grow faster, work less, and make more money. Serving the US nationwide.</p>
+      <div class="si-r">
+        <a class="si" href="https://www.instagram.com/launchaix?igsh=MWw5YXZ1ZnY0OTVsaw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a>
+        <a class="si" href="https://www.facebook.com/profile.php?id=61578196255046" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        <a class="si" href="https://www.linkedin.com/company/launchaix/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a class="si" href="https://www.trustpilot.com/review/launchaix.com" target="_blank" rel="noopener noreferrer" aria-label="Trustpilot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></a>
+      </div>
+    </div>
+    <div class="ft-col"><h5>Company</h5><a href="/#services">Services</a><a href="/#realestate">Real Estate</a><a href="/#smallbiz">Small Business</a><a href="/book">Book a Call</a></div>
+    <div class="ft-col"><h5>Follow Us</h5><a href="https://www.instagram.com/launchaix?igsh=MWw5YXZ1ZnY0OTVsaw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.facebook.com/profile.php?id=61578196255046" target="_blank" rel="noopener noreferrer">Facebook</a><a href="https://www.linkedin.com/company/launchaix/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://www.trustpilot.com/review/launchaix.com" target="_blank" rel="noopener noreferrer">Trustpilot</a></div>
+    <div class="ft-col"><h5>Legal</h5><a href="/terms-of-service">Terms of Service</a><a href="/privacy">Privacy Policy</a><a href="mailto:contact@launchaix.com">contact@launchaix.com</a></div>
+  </div>
+  <div class="ft-hr"></div>
+  <div class="ft-bot"><span>©2026 LaunchAI (launchaix) · All rights reserved</span><div style="display:flex;gap:1.2rem;align-items:center"><a href="https://www.trustpilot.com/review/launchaix.com" target="_blank" rel="noopener noreferrer" class="tpv">★ Verified on Trustpilot</a><a href="/privacy">Privacy</a></div></div>
+</footer>
+
+<script>
+function handleSub(e){e.preventDefault();var btn=document.getElementById('sbtn');var form=document.getElementById('bForm');var succ=document.getElementById('succDiv');var email=document.getElementById('email').value;var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!emailRe.test(email)){alert('Please enter a valid email address.');return}btn.innerHTML='Submitting...';btn.disabled=true;btn.style.opacity='.65';fetch('https://formspree.io/f/mojraynk',{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}}).then(function(r){if(r.ok){form.style.display='none';succ.style.display='block'}else{btn.innerHTML='Schedule My Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';btn.disabled=false;btn.style.opacity='1';alert('Something went wrong. Please try again or email us at contact@launchaix.com.')}}).catch(function(){btn.innerHTML='Schedule My Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';btn.disabled=false;btn.style.opacity='1';alert('Network error. Please try again or email us at contact@launchaix.com.')})}
+</script>
+</body>
+</html>
