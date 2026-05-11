@@ -28,6 +28,13 @@ a{text-decoration:none;color:inherit}
 .nav{position:sticky;top:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:58px;background:rgba(6,6,10,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--line)}
 .nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
 .logo-svg{height:34px;width:auto;display:block}
+.logo-html{position:relative;display:inline-block;line-height:1}
+.logo-html .lh-text{font-family:'Bricolage Grotesque','Arial Black',Arial,sans-serif;font-weight:800;color:#f0f0f0;letter-spacing:-.04em;line-height:1;white-space:nowrap;display:block}
+.logo-html .lh-star{position:absolute;pointer-events:none;left:0}
+.logo-html-nav .lh-text{font-size:32px}
+.logo-html-nav .lh-star{width:15px;height:15px;top:-5px}
+.logo-html-sm .lh-text{font-size:20px;opacity:.72;letter-spacing:-.03em}
+.logo-html-sm .lh-star{width:9px;height:9px;top:-3px}
 .nav-links{display:flex;gap:1.8rem;list-style:none}
 .nav-links a{font-size:.76rem;color:var(--muted);transition:.2s}.nav-links a:hover{color:#fff}
 .nav-btns{display:flex;gap:.6rem}
@@ -84,12 +91,12 @@ footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5
 
 <nav class="nav">
   <a class="nav-logo" href="/" aria-label="LaunchAI">
-    <svg class="logo-svg" viewBox="0 0 300 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <text x="2" y="56" font-family="'Bricolage Grotesque','Arial Black',Arial,sans-serif" font-size="60" font-weight="800" fill="#f0f0f0" letter-spacing="-2">LaunchAI</text>
-      <g transform="translate(84,4)">
-        <path d="M11 0 Q12 9.4 22 11 Q12 12.6 11 22 Q10 12.6 0 11 Q10 9.4 11 0Z" fill="#ec4899"/>
-      </g>
-    </svg>
+    <div class="logo-html logo-html-nav" id="navLogo">
+      <span class="lh-text" id="navLogoText">LaunchAI</span>
+      <svg class="lh-star" id="navLogoStar" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 0 Q20.8 16.2 38 19 Q20.8 21.8 19 38 Q17.2 21.8 0 19 Q17.2 16.2 19 0Z" fill="#ec4899"/>
+      </svg>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a href="/#services">Services</a></li>
@@ -255,10 +262,12 @@ footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5
   <div class="ft-g">
     <div>
       <a href="/" style="display:inline-block;margin-bottom:.65rem">
-        <svg viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:22px;width:auto;opacity:.72;display:block">
-          <text x="2" y="40" font-family="'Bricolage Grotesque','Arial Black',Arial,sans-serif" font-size="42" font-weight="800" fill="#f0f0f0" letter-spacing="-1">LaunchAI</text>
-          <g transform="translate(57,3)"><path d="M7 0 Q7.7 6 14 7 Q7.7 8 7 14 Q6.3 8 0 7 Q6.3 6 7 0Z" fill="#ec4899"/></g>
-        </svg>
+        <div class="logo-html logo-html-sm" id="footerLogo">
+          <span class="lh-text" id="footerLogoText">LaunchAI</span>
+          <svg class="lh-star" id="footerLogoStar" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 0 Q20.8 16.2 38 19 Q20.8 21.8 19 38 Q17.2 21.8 0 19 Q17.2 16.2 19 0Z" fill="#ec4899"/>
+          </svg>
+        </div>
       </a>
       <p class="ft-desc">We help real estate agents and small businesses use AI to grow faster, work less, and make more money. Serving the US nationwide.</p>
       <div class="si-r">
@@ -276,5 +285,6 @@ footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5
   <div class="ft-bot"><span>©2026 LaunchAI (launchaix) · All rights reserved</span><div style="display:flex;gap:1.2rem;align-items:center"><a href="https://www.trustpilot.com/review/launchaix.com" target="_blank" rel="noopener noreferrer" class="tpv">★ Verified on Trustpilot</a><a href="/privacy">Privacy</a></div></div>
 </footer>
 
+<script>(function(){var logos=[{t:'navLogoText',s:'navLogoStar',fs:32,ls:-.04},{t:'footerLogoText',s:'footerLogoStar',fs:20,ls:-.03}];function pos(){var c=document.createElement('canvas').getContext('2d');logos.forEach(function(lg){var te=document.getElementById(lg.t),st=document.getElementById(lg.s);if(!te||!st)return;c.font='800 '+lg.fs+'px "Bricolage Grotesque","Arial Black",Arial,sans-serif';var lw=c.measureText('La').width,uw=c.measureText('u').width,sw=st.getBoundingClientRect().width||15;st.style.left=Math.max(0,lw+(lg.fs*lg.ls*2)+(uw/2)-(sw/2))+'px'});}pos();document.fonts.ready.then(pos);})();</script>
 </body>
 </html>
