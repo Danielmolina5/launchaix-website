@@ -88,6 +88,15 @@ a{text-decoration:none;color:inherit}
 .nav{position:sticky;top:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:58px;background:rgba(6,6,10,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--line)}
 .nav-logo{display:flex;align-items:center;cursor:pointer;text-decoration:none;flex-shrink:0}
 .logo-svg{height:34px;width:auto;display:block}
+.logo-html{position:relative;display:inline-block;line-height:1}
+.logo-html .lh-text{font-family:'Bricolage Grotesque','Arial Black',Arial,sans-serif;font-weight:800;color:#f0f0f0;letter-spacing:-.04em;line-height:1;white-space:nowrap;display:block}
+.logo-html .lh-star{position:absolute;pointer-events:none;left:0}
+.logo-html-nav .lh-text{font-size:32px}
+.logo-html-nav .lh-star{width:15px;height:15px;top:-5px}
+.logo-html-sm .lh-text{font-size:20px;opacity:.72;letter-spacing:-.03em}
+.logo-html-sm .lh-star{width:9px;height:9px;top:-3px}
+.logo-html-bk .lh-text{font-size:20px;opacity:.75;letter-spacing:-.03em}
+.logo-html-bk .lh-star{width:9px;height:9px;top:-3px}
 .nav-links{display:flex;gap:1.5rem;list-style:none}
 .nav-links a{font-size:.76rem;color:var(--muted);transition:.2s;cursor:pointer}.nav-links a:hover{color:#fff}
 .nav-btns{display:flex;gap:.6rem}
@@ -122,12 +131,12 @@ a{text-decoration:none;color:inherit}
 .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(236,72,153,.1);border:1px solid rgba(236,72,153,.28);color:var(--ps);font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.36rem 1rem;border-radius:50px;margin-bottom:1.8rem;animation:fu .7s .2s both}
 .bpulse{width:5px;height:5px;border-radius:50%;background:var(--ps);animation:blink 2s infinite}
 @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.5)}}
-.hero-logo-wrap{margin-bottom:1.4rem;animation:fu .8s .3s both}
-.hero-logo-wrap .logo-svg{height:58px;filter:drop-shadow(0 0 30px rgba(236,72,153,.4))}
-.hh-wrap{position:relative;height:clamp(8rem,17vw,14rem);margin-bottom:1.3rem;animation:fu .8s .45s both}
-.hh{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .65s,transform .65s;transform:translateY(12px)}
-.hh.act{opacity:1;transform:none}
-.hh h1{font-family:var(--head);font-size:clamp(2.2rem,7vw,5.2rem);font-weight:800;letter-spacing:-.045em;line-height:.97;color:#fff;max-width:880px}
+.hh-wrap{margin-bottom:1.6rem}
+.hh{display:none}
+.hh.act{display:flex;align-items:center;justify-content:center;animation:hhIn .55s ease both}
+@keyframes hhIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hh h1{font-family:var(--head);font-size:clamp(1.8rem,3vw,3rem);font-weight:800;letter-spacing:-.045em;line-height:1.1;color:#fff;max-width:820px;text-align:center}
+@media(max-width:600px){.hh h1{font-size:clamp(1.6rem,6vw,2.2rem)}}
 .gp{background:var(--grad2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .gb{background:var(--grad3);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .hdots{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.6rem;animation:fu .8s .55s both}
@@ -510,14 +519,12 @@ footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5
 
 <nav class="nav">
   <a class="nav-logo" href="#" onclick="showPage('home');return false" aria-label="LaunchAI">
-    <svg class="logo-svg" viewBox="0 0 300 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <text x="2" y="56" font-family="Arial Black,Arial,sans-serif" font-size="60" font-weight="900" fill="#f0f0f0" letter-spacing="-2">LaunchAI</text>
-      <g transform="translate(79,6)">
-        <path d="M11 0L13.8 7.7L22 11L13.8 14.3L11 22L8.2 14.3L0 11L8.2 7.7Z" fill="#ec4899"/>
-        <path d="M11-5L12.8 5.5L11 11L9.2 5.5Z" fill="#ec4899" opacity=".85"/>
-        <path d="M11 27L12.8 16.5L11 11L9.2 16.5Z" fill="#ec4899" opacity=".85"/>
-      </g>
-    </svg>
+    <div class="logo-html logo-html-nav" id="navLogo">
+      <span class="lh-text" id="navLogoText">LaunchAI</span>
+      <svg class="lh-star" id="navLogoStar" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+        <path d="M19 0 Q20.8 16.2 38 19 Q20.8 21.8 19 38 Q17.2 21.8 0 19 Q17.2 16.2 19 0Z" fill="#ec4899"/>
+      </svg>
+    </div>
   </a>
   <ul class="nav-links">
     <li><a onclick="scrollTo2('services')">Services</a></li>
@@ -542,12 +549,6 @@ footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5
   <div class="hfc hfc3"><div class="hfc-icon">💰</div><div class="hfc-val">$100k+</div><div class="hfc-lbl">Avg yearly impact</div></div>
   <div class="hfc hfc4"><div class="hfc-icon">⚡</div><div class="hfc-val">&lt;8s</div><div class="hfc-lbl">AI response</div></div>
   <div class="hero-badge"><span class="bpulse"></span>#1 AI Agency in the US</div>
-  <div class="hero-logo-wrap">
-    <svg class="logo-svg" viewBox="0 0 300 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <text x="2" y="56" font-family="Arial Black,Arial,sans-serif" font-size="60" font-weight="900" fill="#f0f0f0" letter-spacing="-2">LaunchAI</text>
-      <g transform="translate(79,6)"><path d="M11 0L13.8 7.7L22 11L13.8 14.3L11 22L8.2 14.3L0 11L8.2 7.7Z" fill="#ec4899"/><path d="M11-5L12.8 5.5L11 11L9.2 5.5Z" fill="#ec4899" opacity=".85"/><path d="M11 27L12.8 16.5L11 11L9.2 16.5Z" fill="#ec4899" opacity=".85"/></g>
-    </svg>
-  </div>
   <div class="hh-wrap">
     <div class="hh act"><h1>We build AI that<br>actually <span class="gp">makes you money.</span></h1></div>
     <div class="hh"><h1>Your business on <span class="gp">autopilot.</span><br>Revenue on repeat.</h1></div>
@@ -850,10 +851,12 @@ footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5
   <div class="ft-g">
     <div>
       <a href="#" onclick="showPage('home');return false" style="display:inline-block;margin-bottom:.65rem">
-        <svg viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:22px;width:auto;opacity:.72;display:block">
-          <text x="2" y="40" font-family="Arial Black,Arial,sans-serif" font-size="42" font-weight="900" fill="#f0f0f0" letter-spacing="-1">LaunchAI</text>
-          <g transform="translate(52,5)"><path d="M7 0L8.8 5.2L14 7L8.8 8.8L7 14L5.2 8.8L0 7L5.2 5.2Z" fill="#ec4899"/><path d="M7-2.5L8 4L7 7L6 4Z" fill="#ec4899" opacity=".85"/><path d="M7 16.5L8 10L7 7L6 10Z" fill="#ec4899" opacity=".85"/></g>
-        </svg>
+        <div class="logo-html logo-html-sm" id="footerLogo">
+          <span class="lh-text" id="footerLogoText">LaunchAI</span>
+          <svg class="lh-star" id="footerLogoStar" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 0 Q20.8 16.2 38 19 Q20.8 21.8 19 38 Q17.2 21.8 0 19 Q17.2 16.2 19 0Z" fill="#ec4899"/>
+          </svg>
+        </div>
       </a>
       <p class="ft-desc">We help real estate agents and small businesses use AI to grow faster, work less, and make more money. Serving the US nationwide.</p>
       <div class="si-r">
@@ -877,7 +880,7 @@ footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5
     <div class="book-left">
       <div class="book-left-glow"></div>
       <div style="position:relative;z-index:1">
-        <div style="margin-bottom:1.4rem"><svg viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:24px;width:auto;opacity:.75;display:block"><text x="2" y="40" font-family="Arial Black,Arial,sans-serif" font-size="42" font-weight="900" fill="#f0f0f0" letter-spacing="-1">LaunchAI</text><g transform="translate(52,5)"><path d="M7 0L8.8 5.2L14 7L8.8 8.8L7 14L5.2 8.8L0 7L5.2 5.2Z" fill="#ec4899"/><path d="M7-2.5L8 4L7 7L6 4Z" fill="#ec4899" opacity=".85"/><path d="M7 16.5L8 10L7 7L6 10Z" fill="#ec4899" opacity=".85"/></g></svg></div>
+        <div style="margin-bottom:1.4rem"><div class="logo-html logo-html-bk" id="bookLogo"><span class="lh-text" id="bookLogoText">LaunchAI</span><svg class="lh-star" id="bookLogoStar" viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg"><path d="M19 0 Q20.8 16.2 38 19 Q20.8 21.8 19 38 Q17.2 21.8 0 19 Q17.2 16.2 19 0Z" fill="#ec4899"/></svg></div></div>
         <div class="bbadge"><span class="bpulse"></span>Free · No commitment</div>
         <h1 class="bh1">Let's Build Your<br><span class="bh1-g">AI System.</span></h1>
         <p class="bsub">Tell us about your business and we'll show you exactly what's possible — specific to you, with real numbers.</p>
@@ -951,7 +954,8 @@ var nobs=new IntersectionObserver(function(entries){entries.forEach(function(e){
 document.querySelectorAll('.num-big[data-target]').forEach(function(el){nobs.observe(el)});
 var bobs=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.style.width=e.target.dataset.width||'0%';bobs.unobserve(e.target)}})},{threshold:.3});
 document.querySelectorAll('.bar-fill[data-width]').forEach(function(el){bobs.observe(el)});
-function handleSub(e){e.preventDefault();var btn=document.getElementById('sbtn');var form=document.getElementById('bForm');var succ=document.getElementById('succDiv');var email=document.getElementById('email').value;var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!emailRe.test(email)){alert('Please enter a valid email address.');return}btn.textContent='Submitting...';btn.disabled=true;btn.style.opacity='.65';setTimeout(function(){form.style.display='none';succ.style.display='block'},1200)}
+function handleSub(e){e.preventDefault();var btn=document.getElementById('sbtn');var form=document.getElementById('bForm');var succ=document.getElementById('succDiv');var email=document.getElementById('email').value;var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(!emailRe.test(email)){alert('Please enter a valid email address.');return}btn.textContent='Submitting...';btn.disabled=true;btn.style.opacity='.65';fetch('https://formspree.io/f/mojraynk',{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}}).then(function(r){if(r.ok){form.style.display='none';succ.style.display='block'}else{btn.textContent='Schedule My Call';btn.disabled=false;btn.style.opacity='1';alert('Something went wrong. Please try again or email contact@launchaix.com.')}}).catch(function(){btn.textContent='Schedule My Call';btn.disabled=false;btn.style.opacity='1';alert('Network error. Please try again or email contact@launchaix.com.')})}
+(function(){var logos=[{t:'navLogoText',s:'navLogoStar',fs:32,ls:-.04},{t:'footerLogoText',s:'footerLogoStar',fs:20,ls:-.03},{t:'bookLogoText',s:'bookLogoStar',fs:20,ls:-.03}];function pos(f){var c=document.createElement('canvas').getContext('2d');logos.forEach(function(lg){var te=document.getElementById(lg.t),st=document.getElementById(lg.s);if(!te||!st)return;c.font='800 '+lg.fs+'px "Bricolage Grotesque","Arial Black",Arial,sans-serif';var lw=c.measureText('La').width,uw=c.measureText('u').width,sw=st.getBoundingClientRect().width||15;st.style.left=Math.max(0,lw+(lg.fs*lg.ls*2)+(uw/2)-(sw/2))+'px';})}pos();document.fonts.ready.then(pos);})();
 </script>
 </body>
 </html>
