@@ -7,6 +7,7 @@
 // Env: SUPPORT_WEBHOOK_SECRET, SUPPORT_EMAIL, SUPPORT_FROM, RESEND_API_KEY,
 //      SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, SITE_URL (e.g. https://www.launchaix.com)
 const crypto = require('crypto');
+const supaAuth = env => { const k = env.SUPABASE_SERVICE_ROLE_KEY || ''; return /^eyJ/.test(k) ? { apikey: k, Authorization: `Bearer ${k}` } : { apikey: k }; };
 const MAX_BODY = 64 * 1024;
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -22,7 +23,7 @@ function secretOk(given, expected) {
 
 async function getTicket(id, env, fetchImpl) {
   const r = await fetchImpl(`${env.SUPABASE_URL}/rest/v1/tickets?id=eq.${encodeURIComponent(id)}&select=id,number,subject,topic,email,user_id,profiles(first_name,last_name,business_name)`, {
-    headers: { apikey: env.SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}` },
+    headers: supaAuth(env),
   });
   if (!r.ok) throw new Error(`Supabase ${r.status}`);
   const rows = await r.json();

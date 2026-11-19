@@ -4,6 +4,7 @@
 // Env vars (Vercel → Settings → Environment Variables):
 //   STRIPE_WEBHOOK_SECRET, SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY
 const crypto = require('crypto');
+const supaAuth = env => { const k = env.SUPABASE_SERVICE_ROLE_KEY || ''; return /^eyJ/.test(k) ? { apikey: k, Authorization: `Bearer ${k}` } : { apikey: k }; };
 
 // Expected one-time prices in cents (keep in sync with the site)
 const PLANS = {
@@ -50,7 +51,7 @@ function orderFromSession(s) {
 
 async function supa(path, init, env = process.env, fetchImpl = fetch) {
   const r = await fetchImpl(`${env.SUPABASE_URL}/rest/v1/${path}`, Object.assign({}, init, {
-    headers: Object.assign({ apikey: env.SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${env.SUPABASE_SERVICE_ROLE_KEY}`, 'Content-Type': 'application/json' }, init.headers || {}),
+    headers: Object.assign(supaAuth(env), { 'Content-Type': 'application/json' }, init.headers || {}),
   }));
   if (!r.ok) throw new Error(`Supabase ${r.status}: ${await r.text()}`);
 }
