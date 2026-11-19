@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>My Account — LaunchAI</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FAF7FC">
+<link rel="icon" href="symbol.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="account.css">
+</head>
+<body>
+<div class="wrap app">
+  <div class="top"><a href="/"><img src="logo-ink.png" alt="LaunchAI"></a><span class="preview" id="pv" hidden>🧪 Preview mode</span><a class="help" id="help" href="#support" hidden><i>💬</i>Help<b id="helpDot" hidden></b></a><a class="me" id="me" href="#profile" hidden>L</a><a class="back" id="backPlans" href="/">← Plans</a></div>
+
+  <!-- SIGN IN / SIGN UP -->
+  <main class="authwrap" id="auth" hidden>
+    <div class="card">
+      <h1 id="aTitle">Welcome <span class="serif gt">back.</span></h1>
+      <p class="sub" id="aSub">Sign in to see your orders and plans.</p>
+      <div class="seg" id="seg" data-m="in"><span class="thumb"></span><button class="on" data-m="in">Sign in</button><button data-m="up">Create account</button></div>
+      <form id="fIn" novalidate>
+        <div class="fld"><label for="iEm">Email</label><input id="iEm" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="fld"><label for="iPw">Password</label><div class="pww"><input id="iPw" type="password" autocomplete="current-password" required><button type="button" data-eye="iPw" aria-label="Show password">👁</button></div></div>
+        <button class="btn btn-main block" style="margin-top:16px">Sign in</button>
+        <div class="msg" id="mIn" role="status"></div>
+        <div class="center"><a href="#" class="link" id="forgot">Forgot your password?</a></div>
+      </form>
+      <form id="fUp" novalidate hidden>
+        <div class="fr2">
+          <div class="fld"><label for="uFn">First name</label><input id="uFn" autocomplete="given-name" required></div>
+          <div class="fld"><label for="uLn">Last name</label><input id="uLn" autocomplete="family-name" required></div>
+        </div>
+        <div class="fld"><label for="uEm">Email</label><input id="uEm" type="email" autocomplete="email" inputmode="email" required></div>
+        <div class="fld"><label for="uPw">Password</label><div class="pww"><input id="uPw" type="password" autocomplete="new-password" minlength="8" placeholder="8+ characters" required><button type="button" data-eye="uPw" aria-label="Show password">👁</button></div></div>
+        <button class="btn btn-main block" style="margin-top:16px">Create my account</button>
+        <div class="msg" id="mUp" role="status"></div>
+      </form>
+      <form id="fRs" novalidate hidden>
+        <div class="fld"><label for="rEm">Your email</label><input id="rEm" type="email" autocomplete="email" required></div>
+        <button class="btn btn-main block" style="margin-top:16px">Email me a reset link</button>
+        <div class="msg" id="mRs" role="status"></div>
+        <div class="center"><a href="#" class="link" id="backIn">← Back to sign in</a></div>
+      </form>
+      <form id="fNp" novalidate hidden>
+        <div class="fld"><label for="nPw">New password</label><input id="nPw" type="password" autocomplete="new-password" minlength="8" placeholder="8+ characters" required></div>
+        <button class="btn btn-main block" style="margin-top:16px">Save new password</button>
+        <div class="msg" id="mNp" role="status"></div>
+      </form>
+    </div>
+    <p class="note" id="pvNote" hidden>Preview mode: accounts are saved only in this browser and any password works.</p>
+    <p class="note">Need help? <a class="link" style="min-height:0" href="mailto:contact@launchaix.com">contact@launchaix.com</a></p>
+  </main>
+
+  <!-- APP -->
+  <main id="app" hidden>
+    <section class="view" id="v-home" hidden></section>
+    <section class="view" id="v-orders" hidden></section>
+    <section class="view" id="v-support" hidden></section>
+    <section class="view" id="v-plans" hidden></section>
+    <section class="view" id="v-profile" hidden></section>
+  </main>
+</div>
+<nav class="tabs" id="tabs" hidden>
+  <button data-t="home"><i>🏠</i>Home</button><button data-t="orders"><i>📦</i>Orders</button><button data-t="support"><i>💬</i>Support<b class="badge" id="tabBadge" hidden></b></button><button data-t="plans"><i>✨</i>Plans</button><button data-t="profile"><i>👤</i>Profile</button>
+</nav>
+
+<script src="config.js?v=1"></script>
+<script src="lx.js?v=1"></script>
+<script>
+(async function(){
+  const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const q=new URLSearchParams(location.search);
+  const CAL='https://calendly.com/danielalejandromolina5/30min';
+  const burst=(x,y,n)=>{if(reduce)return;const sy=['✦','★','●','♥'],co=['#F062B0','#C65BD0','#8A5CF0','#FFB648','#25D366'];for(let i=0;i<n;i++){const el=document.createElement('div');el.className='fx';el.textContent=sy[i%4];el.style.color=co[i%5];el.style.fontSize=(10+Math.random()*12)+'px';document.body.appendChild(el);const a=Math.random()*Math.PI*2,d=60+Math.random()*130;el.animate([{transform:`translate(${x}px,${y}px) scale(.3)`,opacity:1},{transform:`translate(${x+Math.cos(a)*d}px,${y+Math.sin(a)*d-40}px) scale(1) rotate(${Math.random()*240-120}deg)`,opacity:0}],{duration:800+Math.random()*700,easing:'cubic-bezier(.2,.8,.2,1)'}).onfinish=()=>el.remove()}};
+
+  try{await LX.ready()}catch(e){document.body.insertAdjacentHTML('beforeend','<p class="note">We could not reach the account service. Please refresh.</p>');return}
+  $('#pv').hidden=$('#pvNote').hidden=!LX.DEMO;
+
+  /* ---------- sign in / sign up ---------- */
+  const forms={in:$('#fIn'),up:$('#fUp'),rs:$('#fRs'),np:$('#fNp')};
+  const mode=m=>{Object.entries(forms).forEach(([k,f])=>f.hidden=k!==m);$('#seg').hidden=m==='rs'||m==='np';$('#seg').dataset.m=m==='up'?'up':'in';$$('#seg button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
+    const T={in:['Welcome <span class="serif gt">back.</span>','Sign in to see your orders and plans.'],up:['Create your <span class="serif gt">account.</span>','Track orders and manage your plans in one place.'],rs:['Reset your <span class="serif gt">password.</span>',"We'll email you a link to choose a new one."],np:['Choose a new <span class="serif gt">password.</span>','']}[m];$('#aTitle').innerHTML=T[0];$('#aSub').textContent=T[1]};
+  $('#seg').addEventListener('click',e=>{const b=e.target.closest('button');if(b)mode(b.dataset.m)});
+  $('#forgot').onclick=e=>{e.preventDefault();$('#rEm').value=$('#iEm').value;mode('rs')};
+  $('#backIn').onclick=e=>{e.preventDefault();mode('in')};
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-eye]');if(b){const i=$('#'+b.dataset.eye);i.type=i.type==='password'?'text':'password'}});
+  const check=f=>{let bad=null;[...f.querySelectorAll('input[required]')].forEach(i=>{const ok=i.type==='email'?/^\S+@\S+\.\S+$/.test(i.value):i.minLength>0?i.value.length>=i.minLength:i.value.trim()!=='';i.closest('.fld').classList.toggle('err',!ok);if(!ok&&!bad)bad=i});if(bad)bad.focus();return bad};
+  document.addEventListener('input',e=>{const f=e.target.closest('.fld');if(f)f.classList.remove('err')});
+  const run=async(f,msg,fn)=>{msg.className='msg';msg.textContent='';const bad=check(f);if(bad){msg.textContent=bad.minLength>0&&bad.value?'Use at least 8 characters.':'Please complete the highlighted fields.';return}const b=f.querySelector('button.btn'),t=b.textContent;b.disabled=true;b.textContent='One moment…';try{await fn()}catch(e){msg.textContent=e.message||'Something went wrong. Please try again.'}b.disabled=false;b.textContent=t};
+  const after=()=>{const n=q.get('next');if(n&&n.startsWith('buy:')&&LX.PLANS[n.slice(4)]){location.href='/?buy='+encodeURIComponent(n.slice(4));return}render()};
+  forms.in.addEventListener('submit',e=>{e.preventDefault();run(forms.in,$('#mIn'),async()=>{await LX.signIn($('#iEm').value,$('#iPw').value);after()})});
+  forms.up.addEventListener('submit',e=>{e.preventDefault();run(forms.up,$('#mUp'),async()=>{
+    let r;try{r=await LX.signUp({email:$('#uEm').value,password:$('#uPw').value,first_name:$('#uFn').value.trim(),last_name:$('#uLn').value.trim()})}
+    catch(err){if(err.code==='exists'){mode('in');$('#iEm').value=$('#uEm').value;$('#mIn').textContent='You already have an account. Please sign in.';return}throw err}
+    if(r.needsConfirm){$('#mUp').className='msg ok';$('#mUp').textContent='Almost done! Check your email and tap the link to confirm your account.';return}
+    after()})});
+  forms.rs.addEventListener('submit',e=>{e.preventDefault();run(forms.rs,$('#mRs'),async()=>{await LX.resetPassword($('#rEm').value);$('#mRs').className='msg ok';$('#mRs').textContent=LX.DEMO?'Preview mode: no email is sent. Any password works.':'If that email has an account, a reset link is on its way.'})});
+  forms.np.addEventListener('submit',e=>{e.preventDefault();run(forms.np,$('#mNp'),async()=>{await LX.setPassword($('#nPw').value);recovering=false;history.replaceState(null,'','account.html');render()})});
+
+  /* ---------- app ---------- */
+  const fmt=d=>new Date(d).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
+  const money=o=>o.amount?'$'+(o.amount/100).toFixed(2):(LX.PLANS[o.plan]||{}).price||'';
+  const PILL={requested:['Request received','p'],paid:['Paid','g'],in_progress:['In progress','p'],delivered:['Delivered','g'],trialing:['Free trial','g'],active:['Active','g'],canceled:['Canceled',''],past_due:['Payment issue','r'],review:['In review','y']};
+  const kind=o=>{const P=LX.PLANS[o.plan]||{};return o.mode==='subscription'||P.sub?'sub':(!o.amount&&!P.paid?'req':'one')};
+  const live=o=>['trialing','active'].includes(o.status);
+  let orders=[],tickets=[],recovering=false,justPaid=false;
+  const badges=()=>{const n=tickets.filter(t=>t.unread).length;$('#tabBadge').hidden=$('#helpDot').hidden=!n;$('#tabBadge').textContent=n};
+
+  function timeline(o){const k=kind(o);
+    if(k==='sub'){const L=o.status==='canceled'?[['Subscription started',fmt(o.created_at),'done'],['Canceled','No further charges','done']]:o.status==='past_due'?[['Subscription started',fmt(o.created_at),'done'],['Payment issue','Please update your card','now']]:[['Subscription started',fmt(o.created_at),'done'],[o.status==='trialing'?'Free trial':'Active',o.plan==='seo'?'Monthly SEO & reputation work in progress':'Leads PDF on WhatsApp every morning','now']];
+      return L.map(([t,s,c])=>`<div class="${c}">${t}<small>${s}</small></div>`).join('')}
+    if(o.status==='review')return `<div class="done">Payment received<small>${fmt(o.created_at)}</small></div><div class="now">In review<small>We are confirming this payment and will email you.</small></div>`;
+    const L=k==='req'?[['Request received','We got your details'],['We contact you','Within 1 business day'],['Plan ready','Your proposal and next steps']]:[['Paid','Order confirmed'],['In progress','Our team is working on it'],['Delivered','Ready for you']];
+    const at={requested:0,paid:0,in_progress:1,delivered:2}[o.status]??0;
+    return L.map(([t,s],i)=>`<div class="${i<=at?'done':''} ${i===at+1?'now':''}">${t}<small>${i===0?fmt(o.created_at):s}</small></div>`).join('')}
+  function orderCard(o,open){const P=LX.PLANS[o.plan]||{ic:'📦',name:o.plan_name||'Order'};const [pt,pc]=PILL[o.status]||[o.status,''];const k=kind(o);
+    const manage=k==='sub'&&o.status!=='canceled'?(LX.config.STRIPE_PORTAL_URL?`<a class="btn btn-soft sm" href="${esc(LX.config.STRIPE_PORTAL_URL)}" target="_blank" rel="noopener">Manage or cancel</a>`:`<a class="btn btn-soft sm" href="#support/new?order=${encodeURIComponent(o.id)}&topic=billing">Manage or cancel</a>`):'';
+    return `<details class="order" ${open?'open':''}><summary><span class="ic">${P.ic}</span><div><b>${esc(P.name)}</b><small>${fmt(o.created_at)}</small></div><span class="pill ${pc}">${esc(pt)}</span><span class="chev">▾</span></summary>
+      <div class="body"><div class="tl">${timeline(o)}</div>
+      <div class="meta"><div>${k==='sub'?'Price':k==='req'?'Pricing':'Total'}<b>${esc(k==='sub'?(LX.PLANS[o.plan]||{}).price||'':money(o)||'Custom')}</b></div><div>Order<b>#${esc(String(o.id).replace(/^demo-/,'').slice(0,8).toUpperCase())}</b></div></div>
+      <div class="acts">${manage}<a class="btn btn-soft sm" href="#support/new?order=${encodeURIComponent(o.id)}">💬 Get help</a>${LX.DEMO&&!['delivered','canceled'].includes(o.status)?`<button class="btn btn-soft sm" data-adv="${esc(o.id)}">🧪 Preview next status</button>`:''}</div></div></details>`}
+
+  function nextStep(u){const o=orders.find(x=>!['delivered','canceled'].includes(x.status));
+    if(!orders.length)return ['Get started','Pick your first plan','Leads, videos, reputation or a website. Choose what your business needs.',`<button class="btn btn-main sm" data-go="plans">See plans →</button>`];
+    if(!o)return ['All done','Everything is delivered 🎉','Ready for more growth? Add another plan any time.',`<button class="btn btn-main sm" data-go="plans">Explore plans →</button>`];
+    const k=kind(o),P=LX.PLANS[o.plan]||{};
+    if(o.status==='past_due')return ['Action needed','Update your payment method','Your last payment did not go through.',LX.config.STRIPE_PORTAL_URL?`<a class="btn btn-main sm" href="${esc(LX.config.STRIPE_PORTAL_URL)}" target="_blank" rel="noopener">Update card →</a>`:`<a class="btn btn-main sm" href="#support/new?topic=billing">Contact support →</a>`];
+    if(k==='sub'&&o.plan==='seo')return ['Next step','Send us your Google Business Profile access','We need manager access to optimize your profile and set up review requests.',`<a class="btn btn-main sm" href="#support/new?order=${encodeURIComponent(o.id)}&topic=other&subject=${encodeURIComponent('Google Business Profile access')}">Send access →</a>`];
+    if(k==='sub')return ['Next step',u.phone?'Your leads arrive tomorrow morning':'Add your WhatsApp number',u.phone?`We send your daily PDF on WhatsApp to ${esc(u.phone)}.`:'We need it to send your daily leads PDF.',`<button class="btn btn-main sm" data-go="profile">${u.phone?'Change number':'Add number →'}</button>`];
+    if(k==='req')return ['Next step',"We'll contact you within 1 business day",`About: ${esc(P.name||'your request')}. Want to talk sooner?`,`<a class="btn btn-main sm" href="${CAL}" target="_blank" rel="noopener">Book a call now →</a>`];
+    if(o.status==='in_progress')return ['In progress',`We're working on your ${esc((P.name||'order').toLowerCase())}`,"You'll get an email as soon as it's ready.",`<button class="btn btn-soft sm" data-go="orders">Track order</button>`];
+    return ['Next step','Send us your brand details','Your logo, website and any customer feedback you want us to use.',`<a class="btn btn-main sm" href="#support/new?order=${encodeURIComponent(o.id)}&topic=order&subject=${encodeURIComponent('Brand details')}">Send details →</a><button class="btn btn-soft sm" data-go="orders">Track order</button>`]}
+
+  const V={
+    home(u){const name=u.first_name||u.email.split('@')[0];const act=orders.filter(live).length,prog=orders.filter(o=>['paid','in_progress','requested','review'].includes(o.status)).length,del=orders.filter(o=>o.status==='delivered').length;const [k,t,p,a]=nextStep(u);
+      return `${justPaid?`<div class="banner"><i>🎉</i><span>${orders[0]&&orders[0].status==='trialing'?'Your free trial has started. Welcome aboard!':'Payment received. Your order is confirmed!'}</span></div>`:''}
+      <div class="greet"><h1>Hi, <span class="serif gt">${esc(name)}</span></h1><p>Here's what's happening with your plans.</p></div>
+      <div class="stats"><div class="stat"><b>${act}</b><small>Active</small></div><div class="stat"><b>${prog}</b><small>In progress</small></div><div class="stat"><b>${del}</b><small>Delivered</small></div></div>
+      <div class="next"><small>${k}</small><h3>${t}</h3><p>${p}</p><div class="acts">${a}</div></div>
+      ${orders.length?`<div class="h"><h2>Latest order</h2><button data-go="orders">See all →</button></div><div class="orders">${orderCard(orders[0],true)}</div>`:''}
+      <a class="supcard" href="#support"><span class="si">💬</span><div><b>${tickets.some(t=>t.unread)?'You have a new reply from support':'Need help? We\'re here.'}</b><small>${tickets.some(t=>t.unread)?'Tap to read it':'Open a request and track every answer here'}</small></div><span class="go">${tickets.some(t=>t.unread)?'Read →':'Get help →'}</span></a>
+      <div class="h"><h2>Popular plans</h2><button data-go="plans">All plans →</button></div>${['leads','video2','seo'].map(planRow).join('')}`},
+    orders(){return `<div class="greet"><h1>Your <span class="serif gt">orders</span></h1><p>Track every order and request in one place.</p></div><div style="height:16px"></div>
+      ${orders.length?`<div class="orders">${orders.map((o,i)=>orderCard(o,i===0)).join('')}</div>`:q.get('paid')&&!LX.DEMO?'<div class="empty"><i>⏳</i>Your payment is being confirmed. This usually takes a few seconds.<br><button class="btn btn-soft sm" style="margin-top:12px" onclick="location.reload()">Refresh</button></div>':'<div class="empty"><i>📦</i>No orders yet.<br><button class="btn btn-main sm" style="margin-top:12px" data-go="plans">See plans →</button></div>'}`},
+    plans(){return `<div class="greet"><h1>Everything we <span class="serif gt">offer</span></h1><p>Add a plan in a few taps. You pay securely on Stripe.</p></div>
+      <div class="cat">Plans</div>${['leads','video1','video2','video3','seo'].map(planRow).join('')}
+      <div class="cat">Custom projects</div>${['web','growth_re','growth_sb'].map(planRow).join('')}
+      <div class="prow"><span class="e">📅</span><div><b>Not sure what you need?</b><small>Free 30-minute strategy call</small></div><a class="r" href="${CAL}" target="_blank" rel="noopener"><span class="lite">Book →</span></a></div>`},
+    profile(u){const f=(id,l,v,extra='')=>`<div class="fld"><label for="${id}">${l}</label><input id="${id}" value="${esc(v||'')}" ${extra}></div>`;
+      return `<div class="greet"><h1>Your <span class="serif gt">profile</span></h1><p>${esc(u.email)}</p></div><div style="height:16px"></div>
+      <form class="card pform" id="pf" novalidate><div class="fr2">${f('pFn','First name',u.first_name,'autocomplete="given-name"')}${f('pLn','Last name',u.last_name,'autocomplete="family-name"')}</div>
+      ${f('pPh','Phone / WhatsApp',u.phone,'type="tel" inputmode="tel" autocomplete="tel"')}${f('pBn','Business name',u.business_name,'autocomplete="organization"')}${f('pWs','Website or Instagram',u.website)}${f('pMk','Market (city, county or ZIP)',u.market)}
+      <button class="btn btn-ink block" style="margin-top:16px">Save changes</button><div class="saved" id="pSaved" role="status"></div></form>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><a class="btn btn-soft sm" href="#support">💬 Support</a><button class="btn btn-soft sm" id="out">Sign out</button>${LX.DEMO?'<button class="btn btn-soft sm danger" id="rst">Reset preview data</button>':''}</div>
+      <p class="note">© 2026 LaunchAI, a brand of SENDAI LLC</p>`}};
+  /* ---------- support ---------- */
+  const ago=d=>{const s=(Date.now()-new Date(d))/1000;if(s<60)return 'just now';if(s<3600)return Math.floor(s/60)+'m ago';if(s<86400)return Math.floor(s/3600)+'h ago';if(s<604800)return Math.floor(s/86400)+'d ago';return fmt(d)};
+  const TPILL={open:['Waiting for us','p'],answered:['New reply','g'],closed:['Resolved','']};
+  const tpill=t=>{const [l,c]=t.status==='answered'&&!t.unread?['Answered','g']:TPILL[t.status]||[t.status,''];return `<span class="pill ${c}">${l}</span>`};
+  function supportList(){return `<div class="greet"><h1>How can we <span class="serif gt">help?</span></h1><p>Our team usually replies within 1 business day.</p></div>
+      <a class="btn btn-main block" style="margin-top:18px" href="#support/new">＋ New support request</a>
+      <div class="qtopics">${Object.entries(LX.TOPICS).map(([k,v])=>`<a href="#support/new?topic=${k}">${v}</a>`).join('')}</div>
+      <div class="h"><h2>Your requests</h2><small style="color:var(--dim)">${tickets.length||''}</small></div>
+      ${tickets.length?`<div class="tlist">${tickets.map(t=>`<a class="tk ${t.unread?'unread':''}" href="#support/${encodeURIComponent(t.id)}"><div class="tk-top"><b>${esc(t.subject)}</b>${tpill(t)}</div><p>${esc(t.last_message)}</p><small>#${esc(t.number)} · ${esc((LX.TOPICS[t.topic]||'').replace(/^\S+\s/,''))} · ${ago(t.last_at)}</small></a>`).join('')}</div>`
+        :'<div class="empty"><i>💬</i>No requests yet.<br>When you contact us, every answer shows up here.</div>'}`}
+  function supportNew(){const p=new URLSearchParams((location.hash.split('?')[1]||''));const topic=LX.TOPICS[p.get('topic')]?p.get('topic'):(p.get('order')?'order':'');const oid=p.get('order')||'';
+    return `<a class="backlink" href="#support">← Support</a><div class="greet"><h1>New <span class="serif gt">request</span></h1><p>Tell us what's going on. We'll reply here and email you when we do.</p></div>
+      <form class="card nform" id="nf" novalidate style="margin-top:16px">
+        <div class="fld"><label>Topic</label><div class="topics">${Object.entries(LX.TOPICS).map(([k,v])=>`<label><input type="radio" name="topic" value="${k}" ${k===topic?'checked':''}><span>${v}</span></label>`).join('')}</div></div>
+        ${orders.length?`<div class="fld"><label for="nO">Related order (optional)</label><select id="nO"><option value="">None</option>${orders.map(o=>`<option value="${esc(o.id)}" ${o.id===oid?'selected':''}>${esc((LX.PLANS[o.plan]||{}).name||o.plan_name||'Order')} · ${fmt(o.created_at)}</option>`).join('')}</select></div>`:''}
+        <div class="fld"><label for="nS">Subject</label><input id="nS" maxlength="120" required value="${esc(p.get('subject')||'')}" placeholder="e.g. Question about my video"></div>
+        <div class="fld"><label for="nB">Message</label><textarea id="nB" maxlength="5000" required placeholder="Share as much detail as you can."></textarea><small class="cnt" id="nC">0 / 5000</small></div>
+        <button class="btn btn-main block" style="margin-top:14px">Send request</button><div class="msg" id="nM" role="status"></div>
+      </form>`}
+  function supportThread(t){const closed=t.status==='closed';
+    return `<a class="backlink" href="#support">← Support</a>
+      <div class="th-head"><div><small>#${esc(t.number)} · ${esc(LX.TOPICS[t.topic]||'')}</small><h2>${esc(t.subject)}</h2></div>${tpill(Object.assign({},t,{unread:false}))}</div>
+      <div class="thread" id="thread">${t.messages.map(m=>`<div class="bub ${m.author_role==='support'?'them':'me'}">${m.author_role==='support'?'<div class="who"><img src="symbol.png" alt="">LaunchAI Support</div>':''}<p>${esc(m.body)}</p><time>${ago(m.created_at)}</time></div>`).join('')}
+        ${t.status==='open'?'<div class="waiting">⏳ We got your message. We usually reply within 1 business day.</div>':''}</div>
+      ${closed?`<div class="closedbox">✅ This request is resolved.<a class="btn btn-soft sm" href="#support/new">Open a new request</a></div>`
+        :`<form class="composer" id="rf" novalidate><textarea id="rB" rows="1" maxlength="5000" placeholder="Write a reply…" aria-label="Reply"></textarea><button class="btn btn-main sm" aria-label="Send">Send</button></form>
+          <div class="thacts"><button class="link" id="resolve">✓ Mark as resolved</button>${LX.DEMO?`<button class="link" id="sim">🧪 Preview a support reply</button>`:''}</div>`}`}
+  V.support=()=>'';
+
+  function planRow(k){const P=LX.PLANS[k];const own=P.sub&&orders.some(o=>o.plan===k&&live(o));
+    return `<a class="prow" href="${own?'#orders':P.paid?'/?buy='+k:P.href}"><span class="e">${P.ic}</span><div><b>${esc(P.name)}</b><small>${esc(P.blurb)}</small></div><div class="r"><b>${esc(P.price)}</b><br><span class="${own?'own':P.paid?'':'lite'}">${own?'✓ Active':P.paid?'Get it':'Details'}</span></div></a>`}
+
+  const route=()=>decodeURIComponent(location.hash.slice(1).split('?')[0]);
+  const tabOf=()=>{const h=route().split('/')[0];return V[h]?h:'home'};
+  async function show(){const u=LX.user();if(!u)return;const t=tabOf();let supHtml='',openTicket=null;
+    if(t==='support'){const sub=route().split('/')[1]||'';if(sub==='new')supHtml=supportNew();else if(sub){try{openTicket=await LX.ticket(sub);supHtml=supportThread(openTicket)}catch(e){supHtml=`<a class="backlink" href="#support">← Support</a><div class="empty"><i>🔍</i>${esc(e.message)}</div>`}}else supHtml=supportList()}
+    Object.keys(V).forEach(k=>{const el=$('#v-'+k);el.hidden=k!==t;el.innerHTML=k===t?(k==='support'?supHtml:V[k](u)):''});
+    if(openTicket&&openTicket.unread){await LX.markRead(openTicket.id);tickets=await LX.tickets();badges()}
+    const th=$('#thread');if(th)th.lastElementChild&&th.lastElementChild.scrollIntoView({block:'end'});$$('#tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));if(!$('#thread'))scrollTo(0,0);
+    if(justPaid&&t==='home'){setTimeout(()=>burst(innerWidth/2,170,40),300);justPaid=false}}
+  async function render(){const u=LX.user();const authed=u&&!recovering;
+    $('#auth').hidden=!!authed;$('#app').hidden=$('#tabs').hidden=$('#me').hidden=$('#help').hidden=!authed;$('#backPlans').hidden=!!authed;
+    if(!authed){mode(recovering?'np':q.get('mode')==='signup'?'up':'in');return}
+    $('#me').textContent=(u.first_name||u.email)[0].toUpperCase();
+    try{orders=await LX.orders()}catch(e){orders=[]}
+    try{tickets=await LX.tickets()}catch(e){tickets=[]}
+    badges();
+    if(q.get('paid')){justPaid=true;history.replaceState(null,'','account.html');q.delete('paid')}
+    show()}
+  const alertBox=m=>{const d=document.createElement('div');d.className='toast';d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),3500)};
+  addEventListener('hashchange',show);
+  $('#app').addEventListener('keydown',e=>{if(e.target.id==='rB'&&e.key==='Enter'&&(e.metaKey||e.ctrlKey)){e.preventDefault();$('#rf').requestSubmit()}});
+  $('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(b){if(location.hash==='#'+b.dataset.t)show();else location.hash=b.dataset.t}});
+  $('#app').addEventListener('click',async e=>{const g=e.target.closest('[data-go]');if(g){location.hash=g.dataset.go;return}
+    const a=e.target.closest('[data-adv]');if(a){LX.demoAdvance(a.dataset.adv);orders=await LX.orders();show();return}
+    if(e.target.closest('#resolve')){await LX.closeTicket(route().split('/')[1]);tickets=await LX.tickets();show();return}
+    if(e.target.closest('#sim')){LX.demoSupportReply(route().split('/')[1]);tickets=await LX.tickets();badges();show();return}
+    if(e.target.closest('#out')){await LX.signOut();location.hash='';render();return}
+    if(e.target.closest('#rst')){LX.demoReset();location.hash='';render()}});
+  $('#app').addEventListener('input',e=>{if(e.target.id==='nB')$('#nC').textContent=e.target.value.length+' / 5000';if(e.target.id==='rB'){e.target.style.height='auto';e.target.style.height=Math.min(e.target.scrollHeight,160)+'px'}});
+  $('#app').addEventListener('submit',async e=>{
+    if(e.target.id==='nf'){e.preventDefault();const f=e.target,m=$('#nM'),b=f.querySelector('button.btn');m.className='msg';m.textContent='';
+      const topic=(f.querySelector('input[name=topic]:checked')||{}).value;
+      if(!topic){m.textContent='Please choose a topic.';return}
+      if($('#nS').value.trim().length<3){$('#nS').closest('.fld').classList.add('err');m.textContent='Please add a short subject.';return}
+      if(!$('#nB').value.trim()){$('#nB').closest('.fld').classList.add('err');m.textContent='Please describe how we can help.';return}
+      b.disabled=true;b.textContent='Sending…';
+      try{const t=await LX.createTicket({topic,subject:$('#nS').value,body:$('#nB').value,order_id:($('#nO')||{}).value||null});tickets=await LX.tickets();location.hash='support/'+t.id;setTimeout(()=>burst(innerWidth/2,200,26),400)}
+      catch(err){m.textContent=err.message;b.disabled=false;b.textContent='Send request'}return}
+    if(e.target.id==='rf'){e.preventDefault();const ta=$('#rB'),b=e.target.querySelector('button');if(!ta.value.trim())return;b.disabled=true;
+      try{await LX.replyTicket(route().split('/')[1],ta.value);tickets=await LX.tickets();show()}catch(err){b.disabled=false;alertBox(err.message)}return}
+    if(e.target.id!=='pf')return;e.preventDefault();const b=e.target.querySelector('button'),s=$('#pSaved');b.disabled=true;s.textContent='';
+    try{await LX.updateProfile({first_name:$('#pFn').value.trim(),last_name:$('#pLn').value.trim(),phone:$('#pPh').value.trim(),business_name:$('#pBn').value.trim(),website:$('#pWs').value.trim(),market:$('#pMk').value.trim()});s.textContent='✓ Saved';$('#me').textContent=(LX.user().first_name||LX.user().email)[0].toUpperCase()}catch(err){s.textContent=err.message}b.disabled=false});
+  if(!LX.DEMO){if(/type=recovery/.test(location.hash)||LX.lastAuthEvent==='PASSWORD_RECOVERY')recovering=true;LX.onChange(()=>{if(LX.lastAuthEvent==='PASSWORD_RECOVERY'){recovering=true;render()}})}
+  render();
+})();
+</script>
+</body>
+</html>
