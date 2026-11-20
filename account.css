@@ -221,3 +221,5 @@ details.order .body{padding:0 18px 18px}
 .tk-top .pill,.row .pill{flex:none}
 .preview{white-space:nowrap}
 @media (max-width:519px){.top .preview{display:none}}
+
+.btn-wa{background:#25D366;color:#fff;box-shadow:0 12px 26px -12px rgba(37,211,102,.7)}

@@ -66,8 +66,8 @@
   <button data-t="home"><i>🏠</i>Home</button><button data-t="orders"><i>📦</i>Orders</button><button data-t="support"><i>💬</i>Support<b class="badge" id="tabBadge" hidden></b></button><button data-t="plans"><i>✨</i>Plans</button><button data-t="profile"><i>👤</i>Profile</button>
 </nav>
 
-<script src="config.js?v=1"></script>
-<script src="lx.js?v=1"></script>
+<script src="config.js?v=2"></script>
+<script src="lx.js?v=2"></script>
 <script>
 (async function(){
   const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
@@ -105,6 +105,9 @@
   const fmt=d=>new Date(d).toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'});
   const money=o=>o.amount?'$'+(o.amount/100).toFixed(2):(LX.PLANS[o.plan]||{}).price||'';
   const PILL={requested:['Request received','p'],paid:['Paid','g'],in_progress:['In progress','p'],delivered:['Delivered','g'],trialing:['Free trial','g'],active:['Active','g'],canceled:['Canceled',''],past_due:['Payment issue','r'],review:['In review','y']};
+  // WhatsApp activation: customer messages first (inbound), with a code that matches their account
+  const waCode=u=>'LX-'+String(u.id).replace(/[^a-z0-9]/gi,'').slice(0,6).toUpperCase();
+  const waLink=u=>`https://wa.me/${LX.config.WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi! I want to activate my LaunchAI Daily Leads.\nCode: ${waCode(u)}\nEmail: ${u.email}`)}`;
   const kind=o=>{const P=LX.PLANS[o.plan]||{};return o.mode==='subscription'||P.sub?'sub':(!o.amount&&!P.paid?'req':'one')};
   const live=o=>['trialing','active'].includes(o.status);
   let orders=[],tickets=[],recovering=false,justPaid=false;
@@ -118,11 +121,12 @@
     const at={requested:0,paid:0,in_progress:1,delivered:2}[o.status]??0;
     return L.map(([t,s],i)=>`<div class="${i<=at?'done':''} ${i===at+1?'now':''}">${t}<small>${i===0?fmt(o.created_at):s}</small></div>`).join('')}
   function orderCard(o,open){const P=LX.PLANS[o.plan]||{ic:'📦',name:o.plan_name||'Order'};const [pt,pc]=PILL[o.status]||[o.status,''];const k=kind(o);
+    const wa=o.plan==='leads'&&live(o)&&LX.config.WHATSAPP_NUMBER?`<a class="btn btn-wa sm" href="${esc(waLink(LX.user()))}" target="_blank" rel="noopener">✆ Activate on WhatsApp</a>`:'';
     const manage=k==='sub'&&o.status!=='canceled'?(LX.config.STRIPE_PORTAL_URL?`<a class="btn btn-soft sm" href="${esc(LX.config.STRIPE_PORTAL_URL)}" target="_blank" rel="noopener">Manage or cancel</a>`:`<a class="btn btn-soft sm" href="#support/new?order=${encodeURIComponent(o.id)}&topic=billing">Manage or cancel</a>`):'';
     return `<details class="order" ${open?'open':''}><summary><span class="ic">${P.ic}</span><div><b>${esc(P.name)}</b><small>${fmt(o.created_at)}</small></div><span class="pill ${pc}">${esc(pt)}</span><span class="chev">▾</span></summary>
       <div class="body"><div class="tl">${timeline(o)}</div>
       <div class="meta"><div>${k==='sub'?'Price':k==='req'?'Pricing':'Total'}<b>${esc(k==='sub'?(LX.PLANS[o.plan]||{}).price||'':money(o)||'Custom')}</b></div><div>Order<b>#${esc(String(o.id).replace(/^demo-/,'').slice(0,8).toUpperCase())}</b></div></div>
-      <div class="acts">${manage}<a class="btn btn-soft sm" href="#support/new?order=${encodeURIComponent(o.id)}">💬 Get help</a>${LX.DEMO&&!['delivered','canceled'].includes(o.status)?`<button class="btn btn-soft sm" data-adv="${esc(o.id)}">🧪 Preview next status</button>`:''}</div></div></details>`}
+      <div class="acts">${wa}${manage}<a class="btn btn-soft sm" href="#support/new?order=${encodeURIComponent(o.id)}">💬 Get help</a>${LX.DEMO&&!['delivered','canceled'].includes(o.status)?`<button class="btn btn-soft sm" data-adv="${esc(o.id)}">🧪 Preview next status</button>`:''}</div></div></details>`}
 
   function nextStep(u){const o=orders.find(x=>!['delivered','canceled'].includes(x.status));
     if(!orders.length)return ['Get started','Pick your first plan','Leads, videos, reputation or a website. Choose what your business needs.',`<button class="btn btn-main sm" data-go="plans">See plans →</button>`];
@@ -130,7 +134,7 @@
     const k=kind(o),P=LX.PLANS[o.plan]||{};
     if(o.status==='past_due')return ['Action needed','Update your payment method','Your last payment did not go through.',LX.config.STRIPE_PORTAL_URL?`<a class="btn btn-main sm" href="${esc(LX.config.STRIPE_PORTAL_URL)}" target="_blank" rel="noopener">Update card →</a>`:`<a class="btn btn-main sm" href="#support/new?topic=billing">Contact support →</a>`];
     if(k==='sub'&&o.plan==='seo')return ['Next step','Send us your Google Business Profile access','We need manager access to optimize your profile and set up review requests.',`<a class="btn btn-main sm" href="#support/new?order=${encodeURIComponent(o.id)}&topic=other&subject=${encodeURIComponent('Google Business Profile access')}">Send access →</a>`];
-    if(k==='sub')return ['Next step',u.phone?'Your leads arrive tomorrow morning':'Add your WhatsApp number',u.phone?`We send your daily PDF on WhatsApp to ${esc(u.phone)}.`:'We need it to send your daily leads PDF.',`<button class="btn btn-main sm" data-go="profile">${u.phone?'Change number':'Add number →'}</button>`];
+    if(k==='sub'&&o.plan==='leads')return ['Activate your leads','Message us on WhatsApp to start','Tap below to open WhatsApp. Send the message, and our assistant will ask for your ZIP codes and set up your daily report.',`<a class="btn btn-wa sm" href="${esc(waLink(u))}" target="_blank" rel="noopener">✆ Activate on WhatsApp</a>`];
     if(k==='req')return ['Next step',"We'll contact you within 1 business day",`About: ${esc(P.name||'your request')}. Want to talk sooner?`,`<a class="btn btn-main sm" href="${CAL}" target="_blank" rel="noopener">Book a call now →</a>`];
     if(o.status==='in_progress')return ['In progress',`We're working on your ${esc((P.name||'order').toLowerCase())}`,"You'll get an email as soon as it's ready.",`<button class="btn btn-soft sm" data-go="orders">Track order</button>`];
     return ['Next step','Send us your brand details','Your logo, website and any customer feedback you want us to use.',`<a class="btn btn-main sm" href="#support/new?order=${encodeURIComponent(o.id)}&topic=order&subject=${encodeURIComponent('Brand details')}">Send details →</a><button class="btn btn-soft sm" data-go="orders">Track order</button>`]}

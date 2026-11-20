@@ -21,4 +21,7 @@ window.LX_CONFIG = {
 
   // Where lead / request forms are emailed
   FORMSPREE: 'https://formspree.io/f/mojraynk',
+
+  // WhatsApp number for the Daily Leads activation button (country code + number, digits only)
+  WHATSAPP_NUMBER: '17542680534',
 };
