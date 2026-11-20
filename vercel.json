@@ -44,5 +44,12 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/book",
+      "destination": "/?buy=call",
+      "permanent": true
+    }
   ]
 }
