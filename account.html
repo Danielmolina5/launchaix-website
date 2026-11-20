@@ -9,6 +9,24 @@
 <link rel="icon" href="symbol.png">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="account.css">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2270715980511348');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2270715980511348&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script>window.lxTrack=function(e,d){try{window.fbq&&fbq('track',e,d||{})}catch(_){}};</script>
 </head>
 <body>
 <div class="wrap app">
@@ -97,7 +115,7 @@
     let r;try{r=await LX.signUp({email:$('#uEm').value,password:$('#uPw').value,first_name:$('#uFn').value.trim(),last_name:$('#uLn').value.trim()})}
     catch(err){if(err.code==='exists'){mode('in');$('#iEm').value=$('#uEm').value;$('#mIn').textContent='You already have an account. Please sign in.';return}throw err}
     if(r.needsConfirm){$('#mUp').className='msg ok';$('#mUp').textContent='Almost done! Check your email and tap the link to confirm your account.';return}
-    after()})});
+    lxTrack('CompleteRegistration');after()})});
   forms.rs.addEventListener('submit',e=>{e.preventDefault();run(forms.rs,$('#mRs'),async()=>{await LX.resetPassword($('#rEm').value);$('#mRs').className='msg ok';$('#mRs').textContent=LX.DEMO?'Preview mode: no email is sent. Any password works.':'If that email has an account, a reset link is on its way.'})});
   forms.np.addEventListener('submit',e=>{e.preventDefault();run(forms.np,$('#mNp'),async()=>{await LX.setPassword($('#nPw').value);recovering=false;history.replaceState(null,'','account.html');render()})});
 
@@ -208,7 +226,7 @@
     try{orders=await LX.orders()}catch(e){orders=[]}
     try{tickets=await LX.tickets()}catch(e){tickets=[]}
     badges();
-    if(q.get('paid')){justPaid=true;history.replaceState(null,'','account.html');q.delete('paid')}
+    if(q.get('paid')){justPaid=true;const o0=orders[0];lxTrack(o0&&o0.mode==='subscription'&&!o0.amount?'StartTrial':'Purchase',{value:o0&&o0.amount?o0.amount/100:0,currency:'USD',content_name:o0?o0.plan_name:''});history.replaceState(null,'','account.html');q.delete('paid')}
     show()}
   const alertBox=m=>{const d=document.createElement('div');d.className='toast';d.textContent=m;document.body.appendChild(d);setTimeout(()=>d.remove(),3500)};
   addEventListener('hashchange',show);

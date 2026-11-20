@@ -86,6 +86,24 @@ footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5
 .tpv{color:#00b67a}
 @media(max-width:600px){.ft-g{grid-template-columns:1fr 1fr}}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2270715980511348');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2270715980511348&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script>window.lxTrack=function(e,d){try{window.fbq&&fbq('track',e,d||{})}catch(_){}};</script>
 </head>
 <body>
 
@@ -207,11 +225,12 @@ footer{background:var(--ink);border-top:1px solid var(--line);padding:3.5rem 1.5
 
   <div class="legal-section" id="cookies">
     <h2>5. Cookies &amp; Tracking <span>Browser data</span></h2>
-    <p>Our website uses minimal cookies and local browser storage to improve your experience. We do not use advertising tracking cookies or sell behavioral data to ad networks.</p>
+    <p>Our website uses cookies and similar technologies to run the site, measure visits and improve our advertising. We do not sell your personal information.</p>
     <p>Types of cookies we may use:</p>
     <ul>
       <li><strong>Essential cookies and local storage</strong> — required for the website to function, including keeping you signed in to your account</li>
-      <li><strong>Analytics cookies</strong> — help us understand how visitors interact with our site so we can improve it (aggregated, anonymous data only)</li>
+      <li><strong>Analytics</strong> — Vercel Web Analytics counts visits without cookies, using aggregated, anonymous data</li>
+      <li><strong>Advertising (Meta Pixel)</strong> — we use the Meta Pixel to measure how our Facebook and Instagram ads perform and to show our ads to people who visited our site. Meta may collect your IP address, browser information and the pages you visit, and use cookies for this. You can control this in your <a href="https://www.facebook.com/adpreferences" target="_blank" rel="noopener noreferrer" style="color:var(--ps)">Facebook ad preferences</a>, block third-party cookies in your browser, or opt out at <a href="https://optout.aboutads.info" target="_blank" rel="noopener noreferrer" style="color:var(--ps)">optout.aboutads.info</a>. See <a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener noreferrer" style="color:var(--ps)">Meta's Privacy Policy</a>.</li>
     </ul>
     <p>You can control or disable cookies through your browser settings. Disabling cookies may limit some functionality of our website.</p>
   </div>

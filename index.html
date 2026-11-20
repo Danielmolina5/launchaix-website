@@ -1629,6 +1629,24 @@ details.quote ul.yes li::before{content:"✓  ";color:var(--ok)}
 .tp-cw .trustpilot-widget{width:100%;max-width:520px}
 .tp-cw .trustpilot-widget>a{color:#F7A9DA}
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2270715980511348');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2270715980511348&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+<script>window.lxTrack=function(e,d){try{window.fbq&&fbq('track',e,d||{})}catch(_){}};</script>
 </head>
 <body>
 <div class="aurora"><i></i><i></i><i></i></div>
@@ -2441,10 +2459,11 @@ const PROOF = {
       const fd=new FormData(form);$$('.fld[hidden] [name]',form).forEach(f=>fd.delete(f.name));
       try{const r=await post(fd);if(!r.ok)throw 0}catch(_){return fail('Something went wrong. Please email contact@launchaix.com.')}
       LX.addRequest(curPlan,v('#sGl')).catch(()=>{});
+      lxTrack(curPlan==='call'?'Schedule':'Lead',{content_name:P.name});
       form.style.display='none';$('#shDoneP').textContent=P.done||"We'll reach out within one business day to confirm your plan and next steps.";$('#shDone').style.display='block';burst(innerWidth/2,innerHeight*.62,34);return}
     try{
       if(step===1){sbtn.textContent='Creating your account…';const em=v('#sEm'),pw=$('#sPw').value;
-        try{flowUser=(await LX.signUp({email:em,password:pw,first_name:v('#sFn'),last_name:v('#sLn')})).user}
+        try{flowUser=(await LX.signUp({email:em,password:pw,first_name:v('#sFn'),last_name:v('#sLn')})).user;lxTrack('CompleteRegistration',{content_name:P.name})}
         catch(err){if(err.code!=='exists')throw err;
           try{flowUser=await LX.signIn(em,pw)}catch(_){return fail('You already have an account with this email. <a href="account.html?next=buy:'+curPlan+'" style="text-decoration:underline">Sign in to continue</a>.','Continue')}}
         sbtn.disabled=false;layout(2);return}
@@ -2454,6 +2473,7 @@ const PROOF = {
       // the password is never part of this email
       const fd=new FormData();Object.entries({plan:P.name,price:P.price,stage:'Started checkout',firstName:v('#sFn'),lastName:v('#sLn'),email:v('#sEm'),phone:prof.phone,market:prof.market,businessName:prof.business_name,website:prof.website}).forEach(([k,x])=>{if(x)fd.append(k,x)});
       post(fd).catch(()=>{});
+      lxTrack('InitiateCheckout',{content_name:P.name,value:(parseFloat(String(PLANS[curPlan].price).replace(/[^0-9.]/g,''))||0),currency:'USD'});
       await LX.pay(curPlan,flowUser);
     }catch(err){fail(esc(err.message||'Something went wrong. Please try again.'),step===1?'Continue':'Continue to secure payment')}
   });
